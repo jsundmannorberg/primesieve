@@ -37,6 +37,11 @@ int bitset_is_set(struct bitset *set, unsigned long index) {
     return set->set[block] & bit;
 }
 
+void delete_bitset(struct bitset *set) {
+    int i;
+    free(set->set);
+    free(set);
+}
 
 struct bitset *get_all_primes(unsigned long max) {
     unsigned long counter = 2;
@@ -84,6 +89,7 @@ int main(int argc, char **argv) {
             printf("%lu ", i);
         }
     }
+    delete_bitset(primes);
     printf("\n");
     return 0;
 }
